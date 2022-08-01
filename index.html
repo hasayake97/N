@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./big.min.js"></script>
+  <script src="index.js"></script>
+</head>
+<body>
+  <script>
+    const _N = new N(window.Big)
+
+    console.log(_N)
+    // 加
+    console.log('加',
+      _N.add(0.1, 0.2, '0.3').toNumber(),
+      _N.add(1, 2).add().toNumber()
+    )
+
+    // 减
+    console.log(
+      '减',
+      _N.minus(0.3, 0.1, 2).toNumber(),
+      _N.minus(0.3, 0.2).minus().toNumber()
+    )
+
+    // 乘
+    console.log('乘', _N.mul(0.6, 3).toNumber())
+
+    // 除
+    console.log('除', _N.div(0.6, 3).toNumber())
+
+    // 幂
+    console.log('幂',
+      _N.pow(0.7, 2, 2).toNumber(),
+      _N.add(10, 10).pow().toNumber(),
+      _N.pow(1, 1).toNumber()
+    )
+
+    // 开方
+    console.log('开方',
+      _N.sqrt(0.2401).toNumber(),
+      _N.mul(4, 4).sqrt().toNumber(),
+      _N.sqrt('4').toNumber()
+    )
+
+    // 四舍五入
+    console.log('四舍五入',
+      _N.toRound(123.45),
+      _N.toRound(123.55),
+      _N.toRound(123.65),
+      _N.add(123, 0.45).toRound(),
+      _N.toRound('128.44444')
+    )
+
+    // 保留位数
+    console.log('保留位数',
+      _N.toFixed(10, 123.45),
+      _N.add(0.1, 0.2).toFixed(2),
+      _N.init(0.3).toFixed(10),
+      _N.toFixed(4, '123.66')
+    )
+
+    // init
+    console.log('init',
+      _N.add(1, 2).toNumber(),
+      _N.init(1).add(2).toNumber(),
+    )
+
+    // mix
+    console.log('mix', _N.add(1, 2).minus(1).add(1).mul(2).div(10).pow(2).sqrt().toNumber())
+
+  </script>
+</body>
+</html>
