@@ -1,4 +1,4 @@
-import NCore from "./utils/NCore"
+import NCore from './utils/NCore'
 
 const NP = function(v) {
   const N = new NCore()

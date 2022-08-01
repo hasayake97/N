@@ -10,7 +10,7 @@ export default {
   output: {
     name: 'NP',
     format: 'umd',
-    file: 'lib/index.js'
+    file: 'lib/index.umd.js'
   },
 
   plugins: [

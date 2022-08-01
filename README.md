@@ -24,6 +24,9 @@
 
 ```javascript
 import NP from 'precisioner'
+
+// or cdn umd.js
+<script src="https://cdn.jsdelivr.net/npm/precisioner@0.0.15/lib/index.min.js"></script>
 ```
 
 ## 基本使用
@@ -39,6 +42,7 @@ N.add(0.1, 0.2, 0.3).toNumber() => 0.6
 NP(0.1).add(0.2).toNumber() => 0.3
 NP(0.1).add(0.2, 0.3).toNumber() => 0.6
 NP().add(0.1).toNumber() => 0.1
+NP(0.1).toNumber() => 0.1
 ```
 
 ## 解释
