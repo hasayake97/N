@@ -26,7 +26,7 @@
 import NP from 'precisioner'
 
 // or cdn umd.js
-<script src="https://cdn.jsdelivr.net/npm/precisioner@0.0.15/lib/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/precisioner@0.0.16/lib/index.umd.min.js"></script>
 ```
 
 ## 基本使用
