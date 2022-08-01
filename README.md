@@ -8,26 +8,42 @@
 - 运算
   - 四则运算 (加、减、乘、除)
   - 幂运算，幂逆运算(开方)
+  
 - 输出
   - toNumber 正常输出
   - toRound 四舍五入输出
   - toFixed 保留若干位小数输出
+  - toFixedMax 保留若干位小数输出不补零
+  - toThousandth 千分位输出
+  - toStructure 结构化输出 (整数位 + 小数位)
+
+- 工具方法
+  - isNumber 是否为合法的数字类型 (123.45, '123.45', 123, '123')
 
 ## 引入
 
 ```javascript
-import { Big, N } from 'precisioner'
+import NP from 'precisioner'
+```
 
-const _N = new N(Big)
+## 基本使用
+
+```javascript
+import NP from 'precisioner'
+
+const N = NP()
+
+N.add(0.1, 0.2).toNumber() => 0.3
+N.add(0.1, 0.2, 0.3).toNumber() => 0.6
+
+NP(0.1).add(0.2).toNumber() => 0.3
+NP(0.1).add(0.2, 0.3).toNumber() => 0.6
+NP().add(0.1).toNumber() => 0.1
 ```
 
 ## 解释
 
 - Type: Number | String
-
-- prev: 在进行该操作前，存在前置操作。
-
-- no-prev: 在进行该操作前，不存在前置操作。此操作为首先操作。
 
 ----
 
@@ -35,9 +51,7 @@ const _N = new N(Big)
 
 ### 加 (add)
 
-prev: ***add(...value?: Type): N***
-
-noPrev: ***add(value: Type, value1: Type, ...valueN: Type): N***
+***add(value: Type, ...valueN: Type): N***
 
 ```javscript
 // 0.1 + 0.2 => 0.30000000000000004
@@ -49,9 +63,7 @@ N.add(0.1, 0.2).add(5).toNumber() => 5.3
 
 ### 减 (minus)
 
-prev: ***minus(...valueN?: Type): N***
-
-noPrev: ***minus(value: Type, value1: Type, ...valueN: Type): N***
+***minus(value: Type, ...valueN: Type): N***
 
 ```javscript
 // 0.3 - 0.2 => 0.09999999999999998
@@ -64,9 +76,7 @@ N.minus(0.3, 0.2).minus().toNumber() => 0.1
 
 ### 乘 (mul)
 
-prev: ***mul(...valueN?: Type): N***
-
-noPrev: ***mul(value: Type, value1: Type, ...valueN: Type): N***
+***mul(value: Type, ...valueN: Type): N***
 
 ```javscript
 // 0.6 * 3 => 1.7999999999999998
@@ -78,9 +88,7 @@ N.mul(0.6, 3).mul(2).toNumber() => 3.6
 
 ### 除 (div)
 
-prev: ***div(...valueN?: Type): N***
-
-noPrev: ***div(value: Type, value1: Type, ...valueN: Type): N***
+***div(value: Type, ...valueN: Type): N***
 
 ```javscript
 // 0.6 / 3 => 0.19999999999999998
@@ -93,9 +101,7 @@ N.div(0.6, 3).div().toNumber() => 2
 
 ### 幂 (pow)
 
-prev: ***pow(...valueN?: Type): N***
-
-noPrev: ***pow(value: Type, value1: Type, ...valueN: Type): N***
+***pow(value: Type, ...valueN: Type): N***
 
 ```javscript
 // 0.49 * 0.49 => 0.24009999999999998
@@ -151,7 +157,7 @@ N.toRound(123.65) => 124
 N.add(123, 0.45).toRound() => 123
 ```
 
-### 保持若干位小数输出 (toFixed)
+### 保持若干位小数输出-补零 (toFixed)
 
 prev: ***toFixed(dp?: Number = 0, v?: Type): String***
 
@@ -163,6 +169,66 @@ N.toFixed(10, 123.45) => '123.4500000000'
 N.add(0.1, 0.2).toFixed(2) => '0.30'
 ```
 
+### 保持若干位小数输出-不补零 (toFixedMax)
+
+prev: ***toFixedMax(dp?: Number = 0, v?: Type): Number***
+
+no-prev: ***toFixedMax(dp: Number, v: Type): Number***
+
+```javascript
+N.toFixedMax(2, 123.45) => 123.45
+N.toFixedMax(10, 123.45) => 123.45
+N.add(0.1, 0.2).toFixedMax(2) => 0.3
+```
+
+### 千分位输出 (toThousandth)
+
+prev: ***toThousandth(v?: Type): String***
+
+no-prev: ***toThousandth(v: Type): String***
+
+```javascript
+const N = NP()
+N.toThousandth('12300000.0000001') => '12,300,000.0000001'
+
+NP('12300000.0000001').toThousandth() => '12,300,000.0000001'
+NP(4).toThousandth() => '4'
+```
+
+### 结构化输出 (toStructure)
+分别输出 **整数位** + **小数位(若有)**
+
+prev: ***toStructure(v?: Type): Number[]***
+
+no-prev: ***toStructure(v: Type): Number[]***
+
+```javascript
+const N = NP()
+
+N.toStructure(-3.4555) => [-3, -0.4555]
+
+NP('-3.4555').toStructure() => [-3, -0.4555]
+
+NP('-3.00').toStructure() => [-3]
+```
+
+### 是否为合法值 (isNumber)
+
+prev: ***isNumber(v?: Type): Boolean***
+
+no-prev: ***isNumber(v: Type): Boolean***
+
+```javascript
+const N = NP()
+
+N.isNumber(4.1415) => true
+N.isNumber('4.1415') => true
+
+NP(4.1415).isNumber() => true
+NP('-3.00').isNumber() => true
+NP('-3.x2').isNumber() => false
+```
+
 ### 混合运算
 
 ```javascript
@@ -170,22 +236,3 @@ N.add(1, 2).minus(1).add(1).mul(2).div(10).pow(2) => 0.36
 // 等同于 (((1 + 2 - 1 + 1) * 2) / 10)^2
 ```
 
-## 特殊的
-
-### init
-
-***init(v: Type): N***
-
-前置占位，用以解决在 no-prev 情况下，以 prev 的形式传参。
-
-```javascript
-// not-allowed 
-N.add(1).add(2).toNumber() // add(1) 将会报错，无第二参数
-
-// allowed
-N.add(1, 2).toNumber()
-N.add(1, 2).add(3).toNumber()
-
-// 借助 init
-N.init(1).add(2).toNumber
-```
