@@ -1,46 +1,13 @@
-class NExt {
-  static Version = '0.0.1'
-  static PKG_NAME = 'Big'
-  static Falsy = ['', null, NaN, undefined]
-  static MESSAGE_ERR = {
-    import: 'Big.js is not undefined...',
-    args: 'Arguments must be two or more...'
-  }
+import Big from 'big.js'
+import NExt from './NExt'
 
-  constructor(Big) {
-    this.isImported(Big)
-  }
 
-  // 是否为真
-  isTruy(v) {
-    return !NExt.Falsy.includes(v)
-  }
-
-  // 参数校验
-  isLegal(newValue) {
-    if (newValue.length <= 1) {
-      throw new TypeError(NExt.MESSAGE_ERR.args)
-    }
-  }
-
-  // 是否已加载 Big.js
-  isImported(Big) {
-    if (!Big) {
-      throw new ReferenceError(NExt.MESSAGE_ERR.import)
-    }
-  }
-}
-
-const Big = require('./big.min')
-
-class N extends NExt {
-  Big = null
+class NCore extends NExt {
   prev = null
+  constructor() {
+    super()
 
-  constructor(Big) {
-    super(Big)
-
-    this.Big = Big
+    this.prev = null
   }
 
   baseExecution(args, exec) {
@@ -54,7 +21,7 @@ class N extends NExt {
     }
 
     this.prev = needArgs.slice(1)
-      .reduce((tot, ceil) => tot[exec](ceil), new this.Big(needArgs[0]))
+      .reduce((tot, ceil) => tot[exec](ceil), new Big(needArgs[0]))
 
     return this
   }
@@ -98,7 +65,7 @@ class N extends NExt {
    * 开方
    */
   sqrt(v) {
-    this.prev = new this.Big(this.value(v)).sqrt()
+    this.prev = new Big(this.value(v)).sqrt()
 
     return this
   }
@@ -107,14 +74,14 @@ class N extends NExt {
    * 输出-四舍五入
    */
   toRound(v) {
-    return new this.Big(this.value(v)).round().toNumber()
+    return new Big(this.value(v)).round().toNumber()
   }
 
   /**
    * 输出-保留位数
    */
   toFixed(dp = 0, v) {
-    return new this.Big(this.value(v)).toFixed(dp)
+    return new Big(this.value(v)).toFixed(dp)
   }
 
   /**
@@ -141,13 +108,10 @@ class N extends NExt {
    * @returns {N}
    */
   init(v) {
-    this.prev = new this.Big(v)
+    this.prev = new Big(v)
 
     return this
   }
 }
 
-export {
-  Big,
-  N
-}
+export default NCore

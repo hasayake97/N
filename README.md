@@ -1,4 +1,4 @@
-# N
+# precisioner
 
 **基于 [Big.js](http://mikemcl.github.io/big.js/)**
 
@@ -13,6 +13,14 @@
   - toRound 四舍五入输出
   - toFixed 保留若干位小数输出
 
+## 引入
+
+```javascript
+import { Big, N } from 'precisioner'
+
+const _N = new N(Big)
+```
+
 ## 解释
 
 - Type: Number | String
@@ -22,14 +30,6 @@
 - no-prev: 在进行该操作前，不存在前置操作。此操作为首先操作。
 
 ----
-
-## 引入
-
-```javascript
-import { Big, N } from 'precisioner'
-
-const _N = new N(Big)
-```
 
 ## API
 
