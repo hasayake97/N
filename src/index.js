@@ -1,8 +1,9 @@
 import NCore from "./utils/NCore"
 
+const NP = function(v) {
+  const N = new NCore()
 
-const N = function(v) {
-  return v ? new NCore().init(v) : new NCore()
+  return v ? NCore.init.call(N, v) : N
 }
 
-export default N
+export default NP

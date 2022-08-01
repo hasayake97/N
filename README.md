@@ -18,7 +18,7 @@
   - toStructure 结构化输出 (整数位 + 小数位)
 
 - 工具方法
-  - isNumber 是否为合法的数字类型 (123.45, '123.45', 123, '123')
+  - isNumber 是否为合法的数字类型 （整型，浮点型，正负，'整型', '浮点型', '正负'）
 
 ## 引入
 
@@ -71,7 +71,7 @@ N.add(0.1, 0.2).add(5).toNumber() => 5.3
 N.minus(0.3, 0.2).toNumber() => 0.1
 N.minus(0.3, 0.2, 2).toNumber() => -1.8
 N.minus(0.3, 0.2).minus(2).toNumber() => -1.8
-N.minus(0.3, 0.2).minus().toNumber() => 0.1
+N.minus(0.3, 0.2).toNumber() => 0.1
 ```
 
 ### 乘 (mul)
@@ -96,7 +96,7 @@ N.mul(0.6, 3).mul(2).toNumber() => 3.6
 N.div(0.6, 3).toNumber() => 2
 N.div(0.6, 3, 2).toNumber() => 1
 N.div(0.6, 3).div(2).toNumber() => 1
-N.div(0.6, 3).div().toNumber() => 2
+N.div(0.6, 3).toNumber() => 2
 ```
 
 ### 幂 (pow)
@@ -106,12 +106,9 @@ N.div(0.6, 3).div().toNumber() => 2
 ```javscript
 // 0.49 * 0.49 => 0.24009999999999998
 
-// no-prev
 N.pow(0.49, 2).toNumber() => 0.2401
-
-// prev
 N.add(10, 10).pow(2).toNumber() => 400
-N.add(10, 10).pow().toNumber() => 20
+N.add(10, 10).toNumber() => 20
 ```
 
 ### 开方 (sqrt)
