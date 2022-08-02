@@ -26,7 +26,7 @@
 import NP from 'precisioner'
 
 // or cdn umd.js
-<script src="https://cdn.jsdelivr.net/npm/precisioner@0.0.16/lib/index.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/precisioner@0.0.18/lib/index.umd.min.js"></script>
 ```
 
 ## 基本使用
@@ -233,7 +233,7 @@ NP('-3.x2').isNumber() => false
 ### 混合运算
 
 ```javascript
-N.add(1, 2).minus(1).add(1).mul(2).div(10).pow(2) => 0.36 
+N.add(1, 2).minus(1).add(1).mul(2).div(10).pow(2).toNumber() => 0.36 
 // 等同于 (((1 + 2 - 1 + 1) * 2) / 10)^2
 ```
 
