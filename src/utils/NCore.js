@@ -164,6 +164,8 @@ class NCore extends NExt {
    * @returns {N}
    */
   static init(v) {
+    v && NExt.isLegal.call(this, v)
+
     this.prev = v
 
     return this
