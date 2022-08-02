@@ -18,6 +18,6 @@ export default {
       extensions: ['.js']
     }),
 
-    terser()
+    // terser()
   ]
 }

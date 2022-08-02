@@ -107,9 +107,9 @@ class NCore extends NExt {
    * 千分位输出
    */
   toThousandth(th) {
-    const v = this.value(th)
+    th && NExt.isLegal.call(this, th)
 
-    NExt.isLegal.call(this, v)
+    const v = NCore.toBig(this.value(th)).toNumber()
 
     let _v = []
     if (NExt.isType(v, 'Number')) {
@@ -132,9 +132,9 @@ class NCore extends NExt {
    * 结构化输出
    */
   toStructure(v) {
-    const _v = this.value(v)
+    v && NExt.isLegal.call(this, v)
 
-    if (!this.isNumber(_v)) { NExt.throwError('number', _v) }
+    const _v = NCore.toBig(this.value(v)).toNumber()
 
     return [
       Math.trunc(_v),
@@ -144,9 +144,7 @@ class NCore extends NExt {
 
   // 是否为数字
   isNumber(v) {
-    const _v = this.value(v)
-
-    return NExt.Regs.number.test(_v)
+    return NExt.isNumber(this.value(v))
   }
 
   /**

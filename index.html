@@ -84,6 +84,7 @@
     console.log('非补零',
       N.toFixedMax(2, '0.4'),
       N.toFixedMax(10, 123.45),
+      N.add(0.1, 0.2).toFixedMax(3),
       N.add(0.1, 0.2).toFixedMax(2)
     )
 
@@ -100,7 +101,8 @@
       'thousand',
       N.toThousandth('12300000.0000001'),
       NP('12300000.0000001').toThousandth(),
-      NP(4).toThousandth()
+      NP(4).toThousandth(),
+      N.add(2, 2).toThousandth()
     )
 
     // 结构化输出
@@ -108,7 +110,8 @@
       'structure',
       N.toStructure(-3.4555),
       NP('-3.4555').toStructure(),
-      NP('-3.00').toStructure(),
+      NP('-3.00').toStructure('-5'),
+      N.add(1).toStructure()
     )
 
     // 结构化输出
@@ -117,7 +120,8 @@
       N.isNumber(-3.4555),
       NP('-3.4555').isNumber(),
       NP('-3.00').isNumber(),
-      NP('fs').isNumber()
+      NP('fs').isNumber(),
+      N.add(1, '2').isNumber()
     )
 
   </script>
