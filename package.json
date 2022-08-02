@@ -1,6 +1,6 @@
 {
   "name": "precisioner",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "javascript precision number ",
   "main": "./lib/index.umd.js",
   "scripts": {
