@@ -10,7 +10,7 @@ class NCore extends NExt {
 
   baseExecution(args, exec) {
     if (NExt.isLegal.call(this, args)) {
-      const _args = this.prev ? [this.prev, ...args] : [...args]
+      const _args = NExt.isNumber(this.prev) ? [this.prev, ...args] : [...args]
 
       this
         .prev = _args.slice(1)

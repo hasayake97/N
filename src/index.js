@@ -1,9 +1,13 @@
+import NExt from './utils/NExt'
 import NCore from './utils/NCore'
+
 
 const NP = function(v) {
   const N = new NCore()
 
-  return v ? NCore.init.call(N, v) : N
+  return v === undefined
+    ? N
+    : NCore.init.call(N, v)
 }
 
 export default NP
