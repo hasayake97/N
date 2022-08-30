@@ -9,7 +9,7 @@ class NCore extends NExt {
   }
 
   baseExecution(args, exec) {
-    if (NExt.isLegal.call(this, args)) {
+    if (NExt.isLegal(args)) {
       const _args = NExt.isNumber(this.prev) ? [this.prev, ...args] : [...args]
 
       this
@@ -147,7 +147,7 @@ class NCore extends NExt {
    * @returns {N}
    */
   static init(v) {
-    this.prev = NExt.isLegal.call(this, v)
+    this.prev = NExt.isLegal(v)
 
     return this
   }
@@ -158,7 +158,7 @@ class NCore extends NExt {
 
   static validate(v) {
     return NCore.toBig(
-      NExt.isLegal.call(this, this.value(v))
+      NExt.isLegal(this.value(v))
     )
   }
 }
