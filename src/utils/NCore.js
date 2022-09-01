@@ -93,8 +93,8 @@ class NCore extends NExt {
   /**
    * 输出
    */
-  toNumber() {
-    return NCore.validate.call(this, this.value()).toNumber()
+  toNumber(v) {
+    return NCore.validate.call(this, v).toNumber()
   }
 
   /**
