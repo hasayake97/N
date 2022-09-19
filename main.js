@@ -4,5 +4,8 @@
  * @path: main.js
  */
 
+import n from './src'
 
-export { default } from './src'
+export { n }
+
+export default n

@@ -1,17 +1,13 @@
-const NP = require('../lib/index.umd')
+const { n } = require('../lib/index.js')
 
-test('add/default', () => {
-  expect(NP().add(0.1, 0.2).toNumber()).toBe(0.3)
+test('add-1', () => {
+  expect(n().add(0.1, 0.2).toNumber()).toBe(0.3)
 })
 
-test('add/init', () => {
-  expect(NP(0.1).add(0.2).toNumber()).toBe(0.3)
+test('add-2', () => {
+  expect(n().add(0.1).add(0.2).toNumber()).toBe(0.3)
 })
 
-test('add/arguments', () => {
-  expect(NP().add(0.1, 0.2, 0.1).toNumber()).toBe(0.4)
-})
-
-test('add/invalid-number', () => {
-  expect(() => NP().add(0.1, 0.2, "xxx").toNumber()).toThrow()
+test('add-2', () => {
+  expect(n(0.1).add(0.1, 0.2).add(0.6).toNumber()).toBe(1)
 })

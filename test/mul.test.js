@@ -1,13 +1,13 @@
-const NP = require('../lib/index.umd')
+const { n } = require('../lib/index.js')
 
-test('mul/default', () => {
-  expect(NP().mul(10, 10).toNumber()).toBe(100)
+test('mul-1', () => {
+  expect(n().mul(0.6, 3).toNumber()).toBe(1.8)
 })
 
-test('mul/init', () => {
-  expect(NP(10).mul(10).toNumber()).toBe(100)
+test('mul-2', () => {
+  expect(n(0.6).mul(3).toNumber()).toBe(1.8)
 })
 
-test('mul/parameter-missing', () => {
-  expect(() => NP(10).mul().toNumber()).toThrow()
+test('mul-3', () => {
+  expect(n(2).mul(3, 4).mul(10).toNumber()).toBe(240)
 })

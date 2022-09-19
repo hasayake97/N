@@ -1,130 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <script src="./lib/index.umd.js"></script>
+  <script src="./lib/index.js"></script>
 </head>
 <body>
-<script>
-  const N = NP()
+  <script>
+    const n = window.precisioner.n
+    // //
+    console.log(n(0.1).add(0.2).toNumber())
 
-  // 基本使用
-  console.log(
-          '基本使用',
-          N,
-          NP(0.1).add(0.2).toNumber(),
-          N.add(0.1, 0.2).toNumber(),
-          N.add(0.1, 0.2, 0.3).toNumber(),
+    console.log(n().toNumber(0.2))
 
-          NP(0.1).add(0.2).toNumber(),
-          NP(0.1).add(0.2, 0.3).toNumber(),
-          NP().add(0.1).toNumber(),
-          NP(0.1).add(0.2).toNumber(),
-          NP(0).mul(10).toNumber()
-  )
+    console.log(n().add(0.2, '0.3x').add('1').toNumber())
+
+    console.log(n(100).sqrt().toNumber())
+
+    console.log(n().sqrt(100).toNumber())
+
+    console.log(n(1000000).toThousandth())
+
+    console.log(n(1000000.00009).toThousandth())
+
+    console.log(n(1000000.00).toStructure())
+
+    console.log(n(1000000.000009).toStructure())
+
+    console.log(n(1000000.600009).toRound())
+
+    console.log(n(1000000.606009).toFixed(10, 1000000.6))
+
+    console.log(n(1000000.606009).toFixed(10))
+
+    console.log(n(1000000.606009).toFixedMax(100))
+
+    console.log(n(1000000.606009).toFixedMax(100, 1000000.6))
+
+    const _n1 = n(2)
+    console.log(_n1.isValid() &&_n1.add('20').toNumber(), _n1.toNumber(), _n1.toFixed(10, 21), _n1.toNumber())
+
+    console.log('--------------------')
 
 
-  // 加
-  console.log('加',
-          N.add(0.1, 0.2, '0.3').toNumber(),
-          N.add(1, 2).add(2).add(1).toNumber(),
-          N.add(1).toNumber(),
-          NP().add(0.1).toNumber()
-  )
-
-  // 减
-  console.log(
-          '减',
-          N.minus(0.3, 0.1, 2).toNumber(),
-          N.minus(0.3, 0.2).toNumber()
-  )
-
-  // 乘
-  console.log('乘', N.mul(0.6, 3).toNumber())
-
-  // 除
-  console.log('除', N.div(0.6, 3).toNumber())
-
-  // 幂
-  console.log('幂',
-          N.pow(0.7, 2, 2).toNumber(),
-          N.add(10, 10).toNumber(),
-          N.pow(1, 1).toNumber(),
-          N.pow(1).toNumber()
-  )
-
-  // 开方
-  console.log('开方',
-          N.sqrt(0.2401).toNumber(),
-          N.mul(4, 4).sqrt().toNumber(),
-          N.sqrt('4').toNumber(),
-          N.sqrt(4).toNumber()
-  )
-
-  // 四舍五入
-  console.log('四舍五入',
-          N.toRound(123.45),
-          N.toRound(123.55),
-          N.toRound(123.65),
-          N.add(123, 0.45).toRound(),
-          N.toRound('128.44444')
-  )
-
-  // 保留位数
-  console.log('保留位数',
-          N.toFixed(10, 123.45),
-          N.add(0.1, 0.2).toFixed(2),
-          N.toFixed(4, '123.66'),
-          N.toFixed(2, 0.4)
-  )
-
-  // 非补零保留位数
-  console.log('非补零',
-          N.toFixedMax(2, '0.4'),
-          N.toFixedMax(10, 123.45),
-          N.add(0.1, 0.2).toFixedMax(3),
-          N.add(0.1, 0.2).toFixedMax(2)
-  )
-
-  // init
-  console.log('init',
-          N.add(1, 2).toNumber(),
-  )
-
-  // mix
-  console.log('mix', N.add(1, 2).minus(1).add(1).mul(2).div(10).pow(2).sqrt().toNumber())
-
-  // 千分位
-  console.log(
-          'thousand',
-          N.toThousandth('12300000.0000001'),
-          NP('12300000.0000001').toThousandth(),
-          NP(4).toThousandth(),
-          N.add(2, 2).toThousandth()
-  )
-
-  // 结构化输出
-  console.log(
-          'structure',
-          N.toStructure(-3.4555),
-          NP('-3.4555').toStructure(),
-          NP('-3.00').toStructure('-5'),
-          N.add(1).toStructure()
-  )
-
-  // 结构化输出
-  console.log(
-          '是否为数字',
-          N.isNumber(-3.4555),
-          NP('-3.4555').isNumber(),
-          NP('-3.00').isNumber(),
-          NP('fs').isNumber(),
-          N.add(1, '2').isNumber()
-  )
-
-</script>
+    console.log(
+      n(1).add(NaN).isValid()
+    )
+  </script>
 </body>
 </html>

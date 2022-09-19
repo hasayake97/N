@@ -1,12 +1,9 @@
-import NCore from './utils/NCore'
+import N from './utils/N'
 
+export default function(v) {
+  const n = new N()
 
-const NP = function(v) {
-  const N = new NCore()
-
-  return v === undefined
-    ? N
-    : NCore.init.call(N, v)
+  return arguments.length
+    ? N.init.call(n, v)
+    : n
 }
-
-export default NP

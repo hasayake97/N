@@ -1,13 +1,13 @@
-const NP = require('../lib/index.umd')
+const { n } = require('../lib/index.js')
 
-test('div/default', () => {
-  expect(NP().div(0.6, 3).toNumber()).toBe(0.2)
+test('div-1', () => {
+  expect(n().div(0.6, 3).toNumber()).toBe(0.2)
 })
 
-test('div/init', () => {
-  expect(NP(0.6).div(3).toNumber()).toBe(0.2)
+test('div-2', () => {
+  expect(n(0.6).div(3).toNumber()).toBe(0.2)
 })
 
-test('div/parameter-missing', () => {
-  expect(() => NP(0.6).div().toNumber()).toThrow()
+test('div-3', () => {
+  expect(n(100).div(2, 2).div(5).toNumber()).toBe(5)
 })
